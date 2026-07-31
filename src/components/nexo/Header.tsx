@@ -49,13 +49,19 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         scrolled
           ? "border-b border-border/70 bg-background/75 backdrop-blur-xl"
           : "border-b border-transparent bg-background/40 backdrop-blur-sm"
       }`}
     >
-      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 md:px-8">
+      <div
+        className={cn(
+          "mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 md:px-8",
+          "transition-[padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          scrolled ? "py-3" : "py-4",
+        )}
+      >
         <a href="#inicio" className="min-w-0" aria-label="NEXO - início">
           <Wordmark />
         </a>

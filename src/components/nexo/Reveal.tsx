@@ -3,26 +3,37 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 type Direction = "up" | "down" | "left" | "right" | "scale" | "none";
 
 const HIDDEN: Record<Direction, string> = {
-  up: "translate-y-8",
-  down: "-translate-y-8",
-  left: "-translate-x-8",
-  right: "translate-x-8",
-  scale: "scale-95",
+  up: "translate-y-9",
+  down: "-translate-y-9",
+  left: "-translate-x-9",
+  right: "translate-x-9",
+  scale: "scale-[0.94]",
   none: "",
 };
 
+/**
+ * Scroll-triggered reveal used across every section.
+ *
+ * Unlike a "play once" reveal, this re-arms itself every time the element
+ * leaves the viewport — so content animates back in both when scrolling
+ * down *and* when scrolling back up past it, the way Linear / Stripe /
+ * Framer sections behave. The element only resets once it's fully out of
+ * view (rootMargin below), so it never flickers mid-scroll.
+ */
 export function Reveal({
   children,
   delay = 0,
   className,
   direction = "up",
   blur = true,
+  once = false,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   direction?: Direction;
   blur?: boolean;
+  once?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
@@ -30,27 +41,34 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        const isIntersecting = entries[0].isIntersecting;
+        if (isIntersecting) {
           setShown(true);
-          io.disconnect();
+          if (once) io.disconnect();
+        } else if (!once) {
+          setShown(false);
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [once]);
 
   return (
     <div
       ref={ref}
       style={{
-        transitionDelay: `${delay}ms`,
-        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+        transitionDelay: shown ? `${delay}ms` : "0ms",
+        transitionTimingFunction: shown
+          ? "cubic-bezier(0.16, 1, 0.3, 1)"
+          : "cubic-bezier(0.4, 0, 1, 1)",
+        transitionDuration: shown ? "900ms" : "500ms",
       }}
-      className={`transition-all duration-[900ms] will-change-transform motion-reduce:transition-none ${
+      className={`transition-all will-change-transform motion-reduce:transition-none ${
         shown
           ? "translate-x-0 translate-y-0 scale-100 opacity-100 blur-0"
           : `opacity-0 ${HIDDEN[direction]} ${blur ? "blur-[6px]" : ""}`

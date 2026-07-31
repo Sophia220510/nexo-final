@@ -195,7 +195,7 @@
 
 @utility surface-hover {
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.008);
     border-color: color-mix(in oklab, var(--accent-brand) 45%, var(--border));
     box-shadow:
       0 1px 2px oklch(0 0 0 / 0.04),
@@ -288,6 +288,54 @@
   filter: blur(80px);
   opacity: 0.55;
   pointer-events: none;
+}
+
+/* ---------- Premium accent details ---------- */
+
+@utility badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklab, var(--accent-brand) 30%, var(--border));
+  background: color-mix(in oklab, var(--accent-brand) 10%, var(--background));
+  padding: 0.4rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: color-mix(in oklab, var(--accent-brand) 70%, var(--foreground));
+}
+
+@utility divider-fade {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+}
+
+@utility timeline-track {
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--accent-brand) 55%, transparent),
+    var(--border) 45%,
+    transparent
+  );
+}
+
+@utility timeline-node {
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  background-color: var(--background);
+  border: 1.5px solid color-mix(in oklab, var(--accent-brand) 55%, var(--border));
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent-brand) 12%, transparent);
+  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility grid-fade {
+  background-image: linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 50%, black 10%, transparent 75%);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -18,6 +18,7 @@ import {
   Mail,
   MessageSquareText,
   Palette,
+  Search,
   ShieldCheck,
   Smartphone,
   Sparkles,
@@ -34,19 +35,27 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
+  Badge,
   BrandButton,
   Card,
+  Divider,
   FloatingBadge,
   GhostButton,
   Icon,
   IconChip,
   SectionHead,
+  Stagger,
+  StaggerItem,
   Stat,
 } from "@/components/nexo/ui";
 import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, PHONE_DISPLAY, WA } from "@/lib/nexo";
+import { cn } from "@/lib/utils";
 import heroMockups from "@/assets/hero-mockups.jpg";
 import caseBella from "@/assets/case-bella.png";
 import caseVitalab from "@/assets/case-vitalab.jpg";
+import quemSomosImg from "@/assets/quem-somos.png";
+import ecosistemaImg from "@/assets/ecosistema-nexo.png";
+import sitesShowcaseImg from "@/assets/sites-showcase.png";
 
 const TITLE = "NEXO — Organização, estratégia e crescimento digital";
 const DESCRIPTION =
@@ -201,11 +210,36 @@ const METODO = [
 ];
 
 const ETAPAS = [
-  { n: "01", title: "Diagnóstico", text: "Entendemos o negócio, público e necessidades." },
-  { n: "02", title: "Estratégia", text: "Definimos as melhores soluções para a empresa." },
-  { n: "03", title: "Planejamento", text: "Organizamos conteúdos, comunicação e processos." },
-  { n: "04", title: "Execução", text: "Criamos e implementamos as soluções." },
-  { n: "05", title: "Acompanhamento", text: "Ajustamos e evoluímos conforme os objetivos." },
+  {
+    n: "01",
+    icon: Search,
+    title: "Diagnóstico",
+    text: "Entendemos o negócio, público e necessidades.",
+  },
+  {
+    n: "02",
+    icon: Target,
+    title: "Estratégia",
+    text: "Definimos as melhores soluções para a empresa.",
+  },
+  {
+    n: "03",
+    icon: CalendarCheck,
+    title: "Planejamento",
+    text: "Organizamos conteúdos, comunicação e processos.",
+  },
+  {
+    n: "04",
+    icon: Code2,
+    title: "Execução",
+    text: "Criamos e implementamos as soluções.",
+  },
+  {
+    n: "05",
+    icon: LineChart,
+    title: "Acompanhamento",
+    text: "Ajustamos e evoluímos conforme os objetivos.",
+  },
 ];
 
 const ANALISE = [
@@ -356,7 +390,7 @@ function Index() {
           <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.08fr_1fr]">
             <div>
               <Reveal>
-                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 text-xs text-muted-foreground backdrop-blur">
+                <span className="badge-chip bg-background/70 backdrop-blur">
                   <Star className="h-3.5 w-3.5" />
                   Organização · Estratégia · Crescimento
                 </span>
@@ -456,7 +490,7 @@ function Index() {
         {/* QUEM SOMOS */}
         <section
           id="sobre"
-          className="border-t border-border bg-secondary/30 px-5 py-24 md:px-8 md:py-32"
+          className="border-t border-border bg-secondary/30 px-5 py-28 md:px-8 md:py-36"
         >
           <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2 lg:items-center">
             <Reveal direction="left">
@@ -476,41 +510,55 @@ function Index() {
               </p>
             </Reveal>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {PILARES.map((p, i) => (
-                <Reveal key={p} delay={i * 90} direction="right">
-                  <div className="surface surface-hover flex items-center gap-3 px-5 py-6">
-                    <Star className="h-4 w-4 shrink-0" />
-                    <span className="text-base font-medium">{p}</span>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            <Reveal delay={140} direction="right" className="relative">
+              <Parallax strength={16}>
+                <div className="surface relative overflow-hidden rounded-[2rem] p-3">
+                  <img
+                    src={quemSomosImg}
+                    alt="Ecossistema NEXO: laptop com dashboard estratégico, tablet com calendário de conteúdo, smartphone com perfil de Instagram organizado e plano estratégico impresso"
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[4/3] w-full rounded-[1.5rem] object-cover"
+                  />
+                </div>
+              </Parallax>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {PILARES.map((p, i) => (
+                  <Reveal key={p} delay={i * 90} direction="up">
+                    <div className="surface surface-hover flex items-center gap-3 px-5 py-4">
+                      <Star className="h-4 w-4 shrink-0" />
+                      <span className="text-sm font-medium">{p}</span>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </section>
 
         {/* VISÃO / MISSÃO / VALORES */}
-        <section className="px-5 py-24 md:px-8 md:py-32">
+        <section className="px-5 py-28 md:px-8 md:py-36">
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <SectionHead eyebrow="Nossos princípios" title="Visão, missão e valores." />
             </Reveal>
-            <div className="mt-14 grid gap-5 md:grid-cols-3">
-              {VMV.map((v, i) => (
-                <Reveal key={v.label} delay={i * 100}>
+            <Stagger className="mt-14 grid gap-5 md:grid-cols-3">
+              {VMV.map((v) => (
+                <StaggerItem key={v.label}>
                   <Card>
                     <IconChip icon={v.icon} />
                     <h3 className="mt-6 text-xl font-medium">{v.label}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.text}</p>
                   </Card>
-                </Reveal>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
         </section>
 
         {/* DESAFIOS */}
-        <section className="border-y border-border bg-secondary/30 px-5 py-24 md:px-8 md:py-32">
+        <section className="border-y border-border bg-secondary/30 px-5 py-28 md:px-8 md:py-36">
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <SectionHead
@@ -520,36 +568,55 @@ function Index() {
               />
             </Reveal>
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {DESAFIOS.map((d, i) => (
-                <Reveal key={d.title} delay={i * 80} direction="up">
+            <Stagger className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {DESAFIOS.map((d) => (
+                <StaggerItem key={d.title}>
                   <Card>
                     <IconChip icon={d.icon} />
                     <h3 className="mt-6 text-base font-medium">{d.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d.text}</p>
                   </Card>
-                </Reveal>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
         </section>
 
-        {/* GANHOS */}
-        <section className="px-5 py-24 md:px-8 md:py-32">
+        {/* GANHOS — quebrando o padrão título/texto/cards com um layout texto + lista */}
+        <section className="px-5 py-28 md:px-8 md:py-36">
           <div className="mx-auto max-w-6xl">
-            <Reveal>
-              <SectionHead eyebrow="Benefícios" title="O que sua empresa ganha com a NEXO." />
-            </Reveal>
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {GANHOS.map((g, i) => (
-                <Reveal key={g.title} delay={i * 80} direction="up">
-                  <Card>
-                    <IconChip icon={g.icon} />
-                    <h3 className="mt-6 text-base font-medium">{g.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{g.text}</p>
-                  </Card>
-                </Reveal>
-              ))}
+            <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+              <Reveal direction="left">
+                <SectionHead eyebrow="Benefícios" title="O que sua empresa ganha com a NEXO." />
+                <Divider className="mt-8 max-w-[6rem]" />
+                <p className="mt-8 max-w-sm text-sm leading-relaxed text-muted-foreground">
+                  Cada ganho abaixo nasce do mesmo princípio: organizar antes de executar, para que
+                  o resultado seja consistente — não só bonito por alguns dias.
+                </p>
+                <div className="mt-8 hidden sm:block">
+                  <GhostButton href={WA.presence} size="md">
+                    Quero esses ganhos para minha empresa
+                  </GhostButton>
+                </div>
+              </Reveal>
+
+              <Stagger className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2">
+                {GANHOS.map((g) => (
+                  <StaggerItem key={g.title}>
+                    <div className="group flex h-full items-start gap-4 bg-background p-6 transition-colors duration-300 hover:bg-secondary/40 md:p-7">
+                      <span className="icon-chip shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">
+                        <Icon icon={g.icon} />
+                      </span>
+                      <div>
+                        <h3 className="text-base font-medium">{g.title}</h3>
+                        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                          {g.text}
+                        </p>
+                      </div>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </Stagger>
             </div>
           </div>
         </section>
@@ -557,7 +624,7 @@ function Index() {
         {/* SOLUÇÕES */}
         <section
           id="solucoes"
-          className="border-y border-border bg-secondary/30 px-5 py-24 md:px-8 md:py-32"
+          className="border-y border-border bg-secondary/30 px-5 py-28 md:px-8 md:py-36"
         >
           <div className="mx-auto max-w-6xl">
             <Reveal>
@@ -567,29 +634,45 @@ function Index() {
               />
             </Reveal>
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {SOLUCOES.map((s, i) => (
-                <Reveal key={s.title} delay={i * 100}>
-                  <Card>
-                    <IconChip icon={s.icon} />
-                    <h3 className="mt-6 text-lg font-medium">{s.title}</h3>
-                    <ul className="mt-5 grid gap-3">
-                      {s.items.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-start gap-2.5 text-sm text-muted-foreground"
-                        >
-                          <Check
-                            className="mt-0.5 h-4 w-4 shrink-0 text-accent-brand"
-                            strokeWidth={1.5}
-                          />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </Card>
-                </Reveal>
-              ))}
+            <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+              <Reveal direction="left">
+                <Parallax strength={16}>
+                  <div className="surface relative overflow-hidden rounded-[2rem] p-3">
+                    <img
+                      src={ecosistemaImg}
+                      alt="Ecossistema conectado da NEXO: Instagram organizado, WhatsApp Business, site profissional e dashboard estratégico em laptop, tablet e smartphone"
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[4/3] w-full rounded-[1.5rem] object-cover"
+                    />
+                  </div>
+                </Parallax>
+              </Reveal>
+
+              <Stagger className="grid gap-5 sm:grid-cols-2">
+                {SOLUCOES.map((s) => (
+                  <StaggerItem key={s.title}>
+                    <Card>
+                      <IconChip icon={s.icon} />
+                      <h3 className="mt-6 text-lg font-medium">{s.title}</h3>
+                      <ul className="mt-5 grid gap-3">
+                        {s.items.map((item) => (
+                          <li
+                            key={item}
+                            className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                          >
+                            <Check
+                              className="mt-0.5 h-4 w-4 shrink-0 text-accent-brand"
+                              strokeWidth={1.5}
+                            />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </Card>
+                  </StaggerItem>
+                ))}
+              </Stagger>
             </div>
 
             <Reveal delay={120}>
@@ -602,7 +685,7 @@ function Index() {
         </section>
 
         {/* DESENVOLVIMENTO DE SITES */}
-        <section id="sites" className="relative overflow-hidden px-5 py-24 md:px-8 md:py-32">
+        <section id="sites" className="relative overflow-hidden px-5 py-28 md:px-8 md:py-36">
           <div
             aria-hidden="true"
             className="aurora right-[-10rem] top-10 h-[24rem] w-[24rem] bg-accent-brand/15"
@@ -621,17 +704,31 @@ function Index() {
               />
             </Reveal>
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {SITE_BENEFICIOS.map((b, i) => (
-                <Reveal key={b.title} delay={i * 80} direction="up">
+            <Reveal delay={100}>
+              <Parallax strength={14}>
+                <div className="surface relative mt-10 overflow-hidden rounded-[2rem] p-3">
+                  <img
+                    src={sitesShowcaseImg}
+                    alt="Site institucional da NEXO exibido em laptop, tablet e smartphone, com destaque para design moderno e responsivo"
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[16/10] w-full rounded-[1.5rem] object-cover"
+                  />
+                </div>
+              </Parallax>
+            </Reveal>
+
+            <Stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {SITE_BENEFICIOS.map((b) => (
+                <StaggerItem key={b.title}>
                   <Card>
                     <IconChip icon={b.icon} />
                     <h3 className="mt-6 text-base font-medium">{b.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.text}</p>
                   </Card>
-                </Reveal>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
 
             <Reveal delay={120}>
               <div className="surface mt-8 grid gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:p-10">
@@ -664,7 +761,7 @@ function Index() {
         {/* BEFORE & AFTER */}
         <section
           id="transformacoes"
-          className="border-y border-border bg-secondary/30 px-5 py-24 md:px-8 md:py-32"
+          className="border-y border-border bg-secondary/30 px-5 py-28 md:px-8 md:py-36"
         >
           <div className="mx-auto max-w-6xl">
             <Reveal>
@@ -718,8 +815,8 @@ function Index() {
           </div>
         </section>
 
-        {/* PROVA SOCIAL / RESULTADOS */}
-        <section className="px-5 py-24 md:px-8 md:py-32">
+        {/* PROVA SOCIAL / RESULTADOS — lista com números grandes, quebrando o padrão de cards */}
+        <section className="px-5 py-28 md:px-8 md:py-36">
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <SectionHead
@@ -729,14 +826,28 @@ function Index() {
               />
             </Reveal>
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-2">
+            <div className="mt-14">
               {PROVA.map((p, i) => (
-                <Reveal key={p.title} delay={i * 90} direction="up">
-                  <Card>
-                    <IconChip icon={p.icon} />
-                    <h3 className="mt-6 text-lg font-medium">{p.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
-                  </Card>
+                <Reveal key={p.title} delay={i * 90} direction="up" blur={false}>
+                  <div
+                    className={cn(
+                      "group grid items-center gap-6 py-8 md:grid-cols-[auto_auto_1fr] md:gap-10",
+                      i !== 0 && "border-t border-border",
+                    )}
+                  >
+                    <span className="text-3xl font-medium tracking-tight text-accent-brand/70 md:text-4xl">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="icon-chip transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">
+                      <Icon icon={p.icon} />
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-medium">{p.title}</h3>
+                      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                        {p.text}
+                      </p>
+                    </div>
+                  </div>
                 </Reveal>
               ))}
             </div>
@@ -746,7 +857,7 @@ function Index() {
         {/* MÉTODO NEXO */}
         <section
           id="metodo"
-          className="border-y border-border bg-secondary/30 px-5 py-24 md:px-8 md:py-32"
+          className="border-y border-border bg-secondary/30 px-5 py-28 md:px-8 md:py-36"
         >
           <div className="mx-auto max-w-6xl">
             <Reveal>
@@ -757,24 +868,35 @@ function Index() {
               />
             </Reveal>
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {METODO.map((m, i) => (
-                <Reveal key={m.letra} delay={i * 110} direction="up">
-                  <Card>
-                    <span className="text-4xl font-medium tracking-tight text-accent-brand">
+            <div className="relative mt-16">
+              <motion.div
+                aria-hidden="true"
+                className="timeline-track absolute left-6 top-6 hidden h-px w-[calc(100%-3rem)] origin-left md:block"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              />
+
+              <Stagger className="grid gap-8 md:grid-cols-4 md:gap-6">
+                {METODO.map((m) => (
+                  <StaggerItem key={m.letra} className="relative">
+                    <span className="timeline-node relative z-10 h-12 w-12 text-xl font-medium text-accent-brand">
                       {m.letra}
                     </span>
-                    <h3 className="mt-5 text-lg font-medium">{m.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.text}</p>
-                  </Card>
-                </Reveal>
-              ))}
+                    <h3 className="mt-6 text-lg font-medium">{m.title}</h3>
+                    <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                      {m.text}
+                    </p>
+                  </StaggerItem>
+                ))}
+              </Stagger>
             </div>
           </div>
         </section>
 
         {/* DIAGNÓSTICO */}
-        <section className="px-5 py-24 md:px-8 md:py-32">
+        <section className="px-5 py-28 md:px-8 md:py-36">
           <div className="surface relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] px-6 py-14 md:px-14 md:py-20">
             <div
               aria-hidden="true"
@@ -809,7 +931,7 @@ function Index() {
         {/* COMO FUNCIONA A PARCERIA */}
         <section
           id="como-funciona"
-          className="border-y border-border bg-secondary/30 px-5 py-24 md:px-8 md:py-32"
+          className="border-y border-border bg-secondary/30 px-5 py-28 md:px-8 md:py-36"
         >
           <div className="mx-auto max-w-6xl">
             <Reveal>
@@ -819,24 +941,36 @@ function Index() {
               />
             </Reveal>
 
-            <div className="relative mt-14 grid gap-10 md:grid-cols-5 md:gap-6">
-              <div className="absolute left-[7px] top-2 hidden h-px w-full bg-gradient-to-r from-accent-brand/60 via-border to-transparent md:block" />
-              {ETAPAS.map((e, i) => (
-                <Reveal key={e.n} delay={i * 100} className="relative">
-                  <span className="block h-[15px] w-[15px] rounded-full bg-accent-brand ring-4 ring-accent-brand/15" />
-                  <p className="mt-6 text-sm text-muted-foreground">{e.n}</p>
-                  <h3 className="mt-2 text-lg font-medium">{e.title}</h3>
-                  <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-                    {e.text}
-                  </p>
-                </Reveal>
-              ))}
+            <div className="relative mt-14">
+              <motion.div
+                aria-hidden="true"
+                className="timeline-track absolute left-6 top-6 hidden h-px w-[calc(100%-3rem)] origin-left md:block"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              />
+
+              <Stagger className="grid gap-10 md:grid-cols-5 md:gap-6">
+                {ETAPAS.map((e) => (
+                  <StaggerItem key={e.n} className="relative">
+                    <span className="timeline-node relative z-10 h-12 w-12">
+                      <Icon icon={e.icon} className="text-accent-brand" />
+                    </span>
+                    <p className="mt-6 text-sm text-muted-foreground">{e.n}</p>
+                    <h3 className="mt-2 text-lg font-medium">{e.title}</h3>
+                    <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                      {e.text}
+                    </p>
+                  </StaggerItem>
+                ))}
+              </Stagger>
             </div>
           </div>
         </section>
 
         {/* DIFERENCIAIS */}
-        <section id="diferenciais" className="px-5 py-24 md:px-8 md:py-32">
+        <section id="diferenciais" className="px-5 py-28 md:px-8 md:py-36">
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <SectionHead eyebrow="Nossos diferenciais" title="Por que escolher a NEXO?" />
@@ -855,7 +989,7 @@ function Index() {
         </section>
 
         {/* RESULTADO */}
-        <section className="border-t border-border px-5 py-24 md:px-8 md:py-32">
+        <section className="border-t border-border px-5 py-28 md:px-8 md:py-36">
           <div className="mx-auto max-w-4xl text-center">
             <Reveal>
               <h2 className="text-[1.75rem] font-medium leading-[1.12] tracking-tight md:text-[2.75rem]">
@@ -869,12 +1003,7 @@ function Index() {
             <Reveal delay={100}>
               <div className="mt-14 flex flex-wrap items-center justify-center gap-3">
                 {["Instagram", "WhatsApp Business", "Identidade", "Site"].map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-border bg-background px-5 py-3 text-sm"
-                  >
-                    {t}
-                  </span>
+                  <Badge key={t}>{t}</Badge>
                 ))}
               </div>
               <div className="mx-auto mt-6 h-10 w-px bg-gradient-to-b from-transparent to-accent-brand" />
@@ -900,9 +1029,14 @@ function Index() {
         {/* FAQ */}
         <section
           id="faq"
-          className="border-t border-border bg-secondary/30 px-5 py-24 md:px-8 md:py-32"
+          className="relative overflow-hidden border-t border-border bg-secondary/30 px-5 py-28 md:px-8 md:py-36"
         >
-          <div className="mx-auto max-w-3xl">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+            <div className="grid-fade absolute inset-0 opacity-[0.5]" />
+            <div className="aurora left-1/2 top-0 h-[18rem] w-[30rem] -translate-x-1/2 bg-accent-brand/10" />
+          </div>
+
+          <div className="relative mx-auto max-w-3xl">
             <Reveal>
               <SectionHead
                 align="center"
