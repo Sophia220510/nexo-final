@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "@tanstack/react-router";
 import { Wordmark } from "./Star";
 import { WA } from "@/lib/nexo";
 
@@ -14,6 +15,7 @@ const NAV = [
 ];
 
 export function Header() {
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -32,15 +34,22 @@ export function Header() {
         </a>
         <div className="flex items-center gap-3">
           <nav className="hidden items-center gap-1 xl:flex" aria-label="Navegação principal">
-            {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="rounded-full px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            ))}
+            {NAV.map((item) => {
+              const active =
+                item.href === "/demonstracoes"
+                  ? location.pathname === "/demonstracoes"
+                  : item.label === "Início" && location.pathname === "/";
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative rounded-full px-3 py-2 text-sm transition-colors hover:bg-secondary hover:text-foreground ${active ? "font-medium text-foreground after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-accent-brand" : "text-muted-foreground"}`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
           <a
             href={WA.project}
@@ -71,16 +80,24 @@ export function Header() {
             aria-label="Navegação mobile"
           >
             <div className="px-5 pb-6 pt-2">
-              {NAV.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block border-b border-border/60 py-4 text-base"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {NAV.map((item) => {
+                const active =
+                  item.href === "/demonstracoes"
+                    ? location.pathname === "/demonstracoes"
+                    : item.label === "Início" && location.pathname === "/";
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center justify-between border-b border-border/60 py-4 text-base ${active ? "font-medium text-foreground" : "text-muted-foreground"}`}
+                  >
+                    {item.label}
+                    {active && <span className="h-2 w-2 rounded-full bg-accent-brand" />}
+                  </a>
+                );
+              })}
               <a
                 href={WA.project}
                 target="_blank"

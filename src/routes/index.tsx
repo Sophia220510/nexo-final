@@ -21,7 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { BrandButton, GhostButton, SectionHead } from "@/components/nexo/ui";
-import { demonstrations } from "@/data/demonstrations";
+import { demonstrations, realProjects } from "@/data/projects";
 import { WA } from "@/lib/nexo";
 import heroMockups from "@/assets/hero-mockups.jpg";
 import sitesShowcase from "@/assets/sites-showcase.png";
@@ -150,15 +150,15 @@ function Home() {
               </Reveal>
               <Reveal delay={80}>
                 <h1 className="mt-7 max-w-3xl text-[2.65rem] font-semibold leading-[1.01] tracking-[-.055em] sm:text-6xl lg:text-[4.7rem]">
-                  Seu negócio merece mais do que{" "}
-                  <span className="text-accent-brand">apenas um perfil.</span>
+                  Sua empresa pode causar uma impressão profissional{" "}
+                  <span className="text-accent-brand">antes do primeiro contato.</span>
                 </h1>
               </Reveal>
               <Reveal delay={150}>
                 <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                  A NEXO cria sites profissionais, personalizados e visualmente marcantes para
-                  apresentar sua empresa, organizar seus produtos e serviços e conduzir seus
-                  clientes diretamente ao contato.
+                  A NEXO desenvolve sites profissionais e personalizados para apresentar seus
+                  produtos, serviços e diferenciais de forma atrativa, organizar as informações que
+                  seu cliente procura e conduzi-lo diretamente ao contato.
                 </p>
               </Reveal>
               <Reveal delay={210}>
@@ -173,7 +173,7 @@ function Home() {
                     Quero um site para minha empresa
                   </BrandButton>
                   <GhostButton href="/demonstracoes" size="lg">
-                    Ver demonstrações
+                    Ver nossos projetos
                   </GhostButton>
                 </div>
               </Reveal>
@@ -214,16 +214,17 @@ function Home() {
                 Uma estrutura própria
               </p>
               <h2 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
-                Instagram chama atenção.{" "}
+                Seu cliente não deveria precisar investigar sua empresa.{" "}
                 <span className="text-white/45">Seu site organiza a decisão.</span>
               </h2>
             </Reveal>
             <div className="mt-14 grid gap-10 lg:grid-cols-[.85fr_1.15fr]">
               <Reveal>
                 <p className="max-w-xl text-lg leading-relaxed text-white/60">
-                  Quando serviços ficam espalhados em posts, cardápios se perdem e informações
-                  importantes ficam escondidas, o cliente precisa perguntar tudo novamente. Um site
-                  apresenta cada resposta em uma experiência clara e profissional.
+                  Antes de mandar uma mensagem, o cliente já está formando uma opinião. Não deixe
+                  que ele monte sozinho o quebra-cabeça da sua empresa entre posts, destaques e
+                  mensagens. Reúna o que ele precisa saber em uma experiência criada para o seu
+                  negócio.
                 </p>
               </Reveal>
               <Reveal delay={120}>
@@ -281,6 +282,72 @@ function Home() {
         </section>
 
         <section
+          id="projetos-reais"
+          className="bg-[#11120f] px-5 py-24 text-white md:px-8 md:py-32"
+        >
+          <div className="mx-auto max-w-7xl">
+            <Reveal>
+              <p className="text-xs uppercase tracking-[.22em] text-accent-brand">
+                Projetos reais · Clientes NEXO
+              </p>
+              <h2 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
+                Projetos que saíram da tela e foram para{" "}
+                <span className="text-white/45">negócios reais.</span>
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/60">
+                Empresas que confiaram na NEXO para construir uma presença online própria,
+                profissional e alinhada ao que oferecem.
+              </p>
+            </Reveal>
+            <div className="mt-14 grid gap-6 lg:grid-cols-2">
+              {realProjects.map((project, index) => (
+                <Reveal key={project.name} delay={index * 100}>
+                  <article className="group relative h-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/[.04] p-7 transition-colors hover:border-accent-brand/40 md:p-10">
+                    <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-accent-brand/10 blur-3xl" />
+                    <span className="inline-flex rounded-full border border-accent-brand/30 bg-accent-brand/10 px-3 py-1.5 text-xs font-medium uppercase tracking-[.16em] text-accent-brand">
+                      Cliente NEXO
+                    </span>
+                    <p className="mt-10 text-xs uppercase tracking-[.18em] text-white/40">
+                      {project.subtitle}
+                    </p>
+                    <h3 className="mt-3 text-3xl font-semibold md:text-4xl">{project.name}</h3>
+                    <p className="mt-5 max-w-xl leading-relaxed text-white/60">
+                      {project.description}
+                    </p>
+                    <div className="mt-7 flex flex-wrap gap-2">
+                      {project.features.map((feature) => (
+                        <span
+                          key={feature}
+                          className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-white/55"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-9 inline-flex items-center gap-2 text-sm font-medium text-white"
+                    >
+                      Ver projeto <ArrowRight size={15} className="text-accent-brand" />
+                    </a>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal>
+              <div className="mt-10 flex flex-col items-start justify-between gap-5 rounded-2xl border border-white/10 bg-white/[.03] p-6 sm:flex-row sm:items-center">
+                <p className="max-w-2xl text-lg text-white/70">
+                  Agora imagine essa atenção aplicada à identidade e às necessidades da sua empresa.
+                </p>
+                <BrandButton href={WA.project}>Quero um projeto nesse nível</BrandButton>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section
           id="demonstracoes"
           className="border-y border-border bg-secondary/40 px-5 py-24 md:px-8 md:py-32"
         >
@@ -288,14 +355,14 @@ function Home() {
             <div className="flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
               <Reveal>
                 <SectionHead
-                  eyebrow="Veja o produto"
+                  eyebrow="Projetos demonstrativos"
                   title={
                     <>
                       Imagine sua empresa com um site{" "}
                       <span className="text-accent-brand">desse nível.</span>
                     </>
                   }
-                  text="Explore estruturas criadas para necessidades diferentes — do cardápio ao agendamento."
+                  text="Projetos conceituais criados pela NEXO para demonstrar possibilidades em diferentes segmentos."
                 />
               </Reveal>
               <Reveal delay={100}>
@@ -315,23 +382,30 @@ function Home() {
                     </div>
                     <div className="p-6">
                       <p className="text-xs uppercase tracking-[.18em] text-accent-brand">
-                        Demonstração
+                        Projeto demonstrativo
                       </p>
                       <h3 className="mt-3 text-2xl font-semibold">{d.segment}</h3>
                       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                         {d.description}
                       </p>
                       <a
-                        href="/demonstracoes"
+                        href={d.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="mt-6 inline-flex items-center gap-2 text-sm font-medium"
                       >
-                        Explorar projeto <ArrowRight size={15} />
+                        Ver demonstração <ArrowRight size={15} />
                       </a>
                     </div>
                   </article>
                 </Reveal>
               ))}
             </div>
+            <Reveal>
+              <div className="mt-10 text-center">
+                <BrandButton href={WA.project}>Quero um projeto para minha empresa</BrandButton>
+              </div>
+            </Reveal>
           </div>
         </section>
 
