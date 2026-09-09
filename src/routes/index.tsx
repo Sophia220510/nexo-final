@@ -8,6 +8,8 @@ import {
   MessageCircle,
   MonitorSmartphone,
   Palette,
+  RefreshCw,
+  ShieldCheck,
   Smartphone,
   Sparkles,
 } from "lucide-react";
@@ -34,6 +36,10 @@ const FAQ = [
   {
     q: "Meu negócio já possui Instagram. Ainda faz sentido ter um site?",
     a: "Sim. O Instagram ajuda a chamar atenção, enquanto o site organiza produtos, serviços, informações e formas de contato em uma experiência própria da sua empresa.",
+  },
+  {
+    q: "Minha empresa já tem um site. Vocês também fazem reformulação?",
+    a: "Sim. Avaliamos a estrutura atual e desenvolvemos uma nova experiência quando o site já não representa bem a qualidade, a identidade ou o momento da empresa.",
   },
   {
     q: "O site funciona no celular?",
@@ -278,6 +284,83 @@ function Home() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="border-y border-border bg-secondary/40 px-5 py-24 md:px-8 md:py-32">
+          <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1fr_.95fr] lg:items-center">
+            <Reveal>
+              <p className="eyebrow">Para quem já tem um site</p>
+              <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
+                Ter um site não basta. Ele precisa estar à altura do{" "}
+                <span className="text-accent-brand">seu trabalho.</span>
+              </h2>
+              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                Antes de conhecer seu atendimento, muitas pessoas conhecem sua empresa pela tela. Se
+                o site parece desatualizado, confuso ou difícil de usar, essa experiência pode
+                transmitir uma impressão que não corresponde à qualidade que você entrega.
+              </p>
+              <p className="mt-5 max-w-2xl leading-relaxed text-foreground">
+                Uma reformulação profissional alinha o digital ao momento atual do negócio, tornando
+                mais fácil compreender seu valor, encontrar informações e chegar ao contato.
+              </p>
+              <div className="mt-9">
+                <BrandButton href={WA.project}>Quero reformular meu site</BrandButton>
+              </div>
+            </Reveal>
+
+            <Reveal delay={120} direction="right">
+              <div className="overflow-hidden rounded-[2rem] border border-border bg-background shadow-xl shadow-black/5">
+                <div className="flex h-12 items-center gap-2 border-b border-border px-5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-border" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-border" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-accent-brand" />
+                  <span className="ml-3 text-[10px] uppercase tracking-[.18em] text-muted-foreground">
+                    A experiência também comunica
+                  </span>
+                </div>
+                <div className="grid gap-px bg-border sm:grid-cols-2">
+                  <div className="bg-background p-7 md:p-9">
+                    <RefreshCw className="h-6 w-6 text-muted-foreground" strokeWidth={1.5} />
+                    <p className="mt-8 text-xs uppercase tracking-[.18em] text-muted-foreground">
+                      Quando o site ficou no passado
+                    </p>
+                    <ul className="mt-5 grid gap-4 text-sm text-muted-foreground">
+                      {[
+                        "Visual que já não representa a empresa",
+                        "Informações difíceis de encontrar",
+                        "Navegação desconfortável no celular",
+                        "Dúvidas antes mesmo do contato",
+                      ].map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-border" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="bg-[#11120f] p-7 text-white md:p-9">
+                    <ShieldCheck className="h-6 w-6 text-accent-brand" strokeWidth={1.5} />
+                    <p className="mt-8 text-xs uppercase tracking-[.18em] text-accent-brand">
+                      Quando o site representa seu nível
+                    </p>
+                    <ul className="mt-5 grid gap-4 text-sm text-white/65">
+                      {[
+                        "Identidade coerente com o negócio",
+                        "Conteúdo organizado e objetivo",
+                        "Experiência responsiva e atual",
+                        "Caminho claro até o contato",
+                      ].map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-brand" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
 

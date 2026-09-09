@@ -1,6 +1,6 @@
 // Central place for NEXO contact details.
-export const WHATSAPP_NUMBER = "5511926382560";
-export const PHONE_DISPLAY = "(11) 92638-2560";
+export const WHATSAPP_NUMBER = "5511961152305";
+export const PHONE_DISPLAY = "(11) 96115-2305";
 export const EMAIL = "nexoempresa2026@gmail.com";
 
 export function whatsappLink(message: string) {
