@@ -25,7 +25,7 @@ import {
 import { BrandButton, GhostButton, SectionHead } from "@/components/nexo/ui";
 import { demonstrations, realProjects } from "@/data/projects";
 import { WA } from "@/lib/nexo";
-import heroMockups from "@/assets/hero-mockups.jpg";
+import heroSitesShowcase from "@/assets/hero-sites-showcase.png";
 import sitesShowcase from "@/assets/sites-showcase.png";
 
 const FAQ = [
@@ -197,9 +197,9 @@ function Home() {
             <Reveal delay={120} direction="scale">
               <div className="relative rounded-[2rem] border border-border bg-[#11120f] p-3 shadow-2xl shadow-black/15">
                 <img
-                  src={heroMockups}
-                  alt="Mockups de sites profissionais desenvolvidos pela NEXO em computador e celular"
-                  className="aspect-[4/3] w-full rounded-[1.45rem] object-cover"
+                  src={heroSitesShowcase}
+                  alt="Notebook e celular exibindo sites profissionais para imobiliária, pizzaria e clínica"
+                  className="aspect-square w-full rounded-[1.45rem] object-cover"
                   fetchPriority="high"
                 />
                 <div className="absolute -bottom-5 left-5 rounded-2xl border border-white/15 bg-[#171914]/95 px-5 py-4 text-white shadow-xl backdrop-blur">
