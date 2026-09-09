@@ -14,6 +14,9 @@ export const WA = {
     "Olá, NEXO! Quero solicitar o diagnóstico gratuito da minha presença digital.",
   ),
   site: whatsappLink("Olá, NEXO! Quero um site profissional. Podem me enviar um orçamento?"),
+  project: whatsappLink(
+    "Olá, NEXO! Quero conversar sobre um site profissional para a minha empresa.",
+  ),
 };
 
 export const INSTAGRAM_URL = "https://www.instagram.com/gonexo.br/";

@@ -1,138 +1,52 @@
-import { ArrowUp, Instagram, Mail, MessageCircle, ArrowUpRight } from "lucide-react";
+import { Instagram, Mail, MessageCircle } from "lucide-react";
 import { Wordmark } from "./Star";
-import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, PHONE_DISPLAY, WA } from "@/lib/nexo";
-
-const LINKS = [
-  { label: "Início", href: "#inicio" },
-  { label: "Quem somos", href: "#sobre" },
-  { label: "Soluções", href: "#solucoes" },
-  { label: "Sites", href: "#sites" },
-  { label: "Transformações", href: "#transformacoes" },
-  { label: "Método NEXO", href: "#metodo" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contato", href: "#contato" },
-];
-
-const SERVICOS = [
-  "Presença digital",
-  "Identidade visual",
-  "WhatsApp Business",
-  "Desenvolvimento de sites",
-  "Diagnóstico gratuito",
-];
+import { EMAIL, INSTAGRAM_URL, WA } from "@/lib/nexo";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border bg-secondary/30">
-      <div
-        aria-hidden="true"
-        className="aurora -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 bg-accent-brand/20"
-      />
-      <div className="relative mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr_auto]">
-          <div className="max-w-sm">
-            <Wordmark />
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-              Conectando negócios ao crescimento digital com estratégia, organização e tecnologia.
-            </p>
-            <div className="mt-6 flex items-center gap-2.5">
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram da NEXO"
-                className="btn-ghost h-11 w-11 p-0"
-              >
-                <Instagram size={17} strokeWidth={1.5} />
-              </a>
-              <a
-                href={`mailto:${EMAIL}`}
-                aria-label="Enviar e-mail para a NEXO"
-                className="btn-ghost h-11 w-11 p-0"
-              >
-                <Mail size={17} strokeWidth={1.5} />
-              </a>
-              <a
-                href={WA.general}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-brand px-5 py-3 text-sm"
-              >
-                <span className="relative z-10 inline-flex items-center gap-2">
-                  <MessageCircle size={16} strokeWidth={1.5} /> WhatsApp
-                </span>
-              </a>
-            </div>
-          </div>
-
-          <nav aria-label="Navegação do rodapé">
-            <p className="eyebrow">Navegação</p>
-            <ul className="mt-5 grid gap-3 text-sm">
-              {LINKS.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
+    <footer className="border-t border-white/10 bg-[#11120f] text-white">
+      <div className="mx-auto max-w-7xl px-5 py-14 md:px-8">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <p className="eyebrow">Soluções</p>
-            <ul className="mt-5 grid gap-3 text-sm text-muted-foreground">
-              {SERVICOS.map((s) => (
-                <li key={s}>{s}</li>
-              ))}
-            </ul>
+            <Wordmark />
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
+              Sites profissionais e personalizados para apresentar empresas com clareza, organização
+              e identidade.
+            </p>
           </div>
-
-          <div className="min-w-0">
-            <p className="eyebrow">Contato</p>
-            <div className="mt-5 grid gap-3 text-sm">
-              <a
-                href={WA.general}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <MessageCircle size={15} strokeWidth={1.5} /> {PHONE_DISPLAY}
-              </a>
-              <a
-                href={`mailto:${EMAIL}`}
-                className="inline-flex min-w-0 items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Mail size={15} strokeWidth={1.5} />
-                <span className="truncate">{EMAIL}</span>
-              </a>
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Instagram size={15} strokeWidth={1.5} /> {INSTAGRAM_HANDLE}
-                <ArrowUpRight size={13} strokeWidth={1.5} />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="hairline mt-14" />
-        <div className="mt-6 flex flex-col gap-4 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} NEXO. Todos os direitos reservados.</span>
-          <div className="flex items-center gap-5">
-            <span>Estratégia digital · São Paulo, Brasil</span>
+          <nav className="grid content-start gap-3 text-sm text-white/65" aria-label="Rodapé">
+            <p className="mb-1 text-xs uppercase tracking-[.2em] text-white">Navegação</p>
+            <a href="/">Início</a>
+            <a href="/demonstracoes">Demonstrações</a>
+            <a href="/#servicos">Serviços</a>
+            <a href="/#contato">Contato</a>
+          </nav>
+          <div className="grid content-start gap-3 text-sm text-white/65">
+            <p className="mb-1 text-xs uppercase tracking-[.2em] text-white">Conecte-se</p>
             <a
-              href="#inicio"
-              className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2"
+              href={WA.general}
+              target="_blank"
+              rel="noreferrer"
             >
-              Voltar ao topo <ArrowUp size={13} strokeWidth={1.5} />
+              <MessageCircle size={15} /> WhatsApp
+            </a>
+            <a
+              className="inline-flex items-center gap-2"
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Instagram size={15} /> Instagram
+            </a>
+            <a className="inline-flex items-center gap-2" href={`mailto:${EMAIL}`}>
+              <Mail size={15} /> {EMAIL}
             </a>
           </div>
+        </div>
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:justify-between">
+          <span>© {new Date().getFullYear()} NEXO.</span>
+          <span>Sites profissionais para empresas.</span>
         </div>
       </div>
     </footer>

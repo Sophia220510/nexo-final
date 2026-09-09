@@ -96,31 +96,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NEXO — Presença digital estratégica" },
+      { title: "NEXO — Sites profissionais para empresas" },
       {
         name: "description",
         content:
-          "A NEXO fortalece a presença digital de pequenas empresas com estratégia para Instagram, WhatsApp Business e identidade digital.",
+          "A NEXO desenvolve sites profissionais e personalizados para empresas, com identidade, organização e contato direto.",
       },
       { name: "author", content: "NEXO" },
       { name: "robots", content: "index, follow" },
       { name: "theme-color", content: "#ffffff" },
-      { property: "og:title", content: "NEXO — Presença digital estratégica" },
+      { property: "og:title", content: "NEXO — Sites profissionais para empresas" },
       {
         property: "og:description",
         content:
-          "A NEXO fortalece a presença digital de pequenas empresas com estratégia para Instagram, WhatsApp Business e identidade digital.",
+          "Sites profissionais e personalizados para apresentar sua empresa e facilitar o contato.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
       { property: "og:site_name", content: "NEXO" },
       { property: "og:url", content: SITE_URL },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "NEXO — Presença digital estratégica" },
+      { name: "twitter:title", content: "NEXO — Sites profissionais para empresas" },
       {
         name: "twitter:description",
         content:
-          "A NEXO fortalece a presença digital de pequenas empresas com estratégia para Instagram, WhatsApp Business e identidade digital.",
+          "Sites profissionais e personalizados para apresentar sua empresa e facilitar o contato.",
       },
       { property: "og:image", content: OG_IMAGE },
       { name: "twitter:image", content: OG_IMAGE },
